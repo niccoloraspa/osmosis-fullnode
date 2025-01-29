@@ -90,7 +90,7 @@ RPC_ABCI_INFO=$(curl -s --retry 5 --retry-delay 1 --connect-timeout 3 -H "Accept
 if [ -z "$RPC_ABCI_INFO" ]; then
     echo "Can't contact $RPC_URL, using default version: $VERSION"
 else
-    NETWORK_VERSION=$(echo $RPC_ABCI_INFO | dasel --plain -r json  'result.response.version') || true
+    NETWORK_VERSION=$(echo $RPC_ABCI_INFO | jq -r '.result.response.version') || true
 
     if [ -z "$NETWORK_VERSION" ]; then
         echo "Can't contact $RPC_URL, using default version: $VERSION"
