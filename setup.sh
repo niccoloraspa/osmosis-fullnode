@@ -37,6 +37,12 @@ YELLOW='\033[33m'
 RESET='\033[0m'
 PURPLE='\033[35m'
 
+# Install lz4 if not installed
+if ! command -v lz4 &> /dev/null; then
+    echo "Installing lz4..."
+    sudo apt-get install -y lz4
+fi
+
 case "$CHAIN_ID" in
     osmosis-1)
         echo -e "\n🧪 $PURPLE Joining 'osmosis-1' network...$RESET"
@@ -70,6 +76,12 @@ if pgrep -f "osmosisd start" >/dev/null; then
             exit 1
             ;;
     esac
+fi
+
+echo -e "\n$YELLOW🔎 Checking if lz4 is installed...$RESET"
+if ! command -v lz4 &> /dev/null; then
+    echo "Installing lz4..."
+    sudo apt-get install -y lz4
 fi
 
 echo -e "\n$YELLOW🔎 Getting current network version from $RPC_URL...$RESET"

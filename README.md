@@ -1,6 +1,7 @@
 # osmosis-fullnode
 
 Simple setup to run osmosis node with docker compose - not intend for production.
+Compatible with Ubuntu and Debian.
 
 ## Setup
 
