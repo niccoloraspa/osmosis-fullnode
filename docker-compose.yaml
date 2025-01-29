@@ -1,0 +1,24 @@
+version: "3"
+
+# Run first the setup.sh script to setup the node
+services:
+  osmosis:
+    command:
+      - start
+      - --home=/osmosis/.osmosisd
+    image: osmolabs/osmosis:28.0.2
+    container_name: osmosis
+    restart: always
+    ports:
+      - 26657:26657
+      - 1317:1317
+      - 9090:9090
+      - 26660:26660
+    volumes:
+      # This should match the home directory in the setup.sh script
+      - /root/.osmosisd/:/osmosis/.osmosisd/
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "2048m"
+        max-file: "3"
